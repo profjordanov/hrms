@@ -63,6 +63,10 @@ function saveAuthInSession(userInfo) {
     sessionStorage.setItem('authToken', userAuth);
     let userId = userInfo._id;
     sessionStorage.setItem('userId', userId);
+    if(userInfo._kmd.roles != undefined){
+        sessionStorage.setItem('roleId', userInfo._kmd.roles[0].roleId);
+    }
+    sessionStorage.setItem('userId', userId);
     let username = userInfo.username;
     $('#loggedInUser').text("Welcome, " + username + "!");
 }

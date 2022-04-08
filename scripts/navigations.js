@@ -2,6 +2,7 @@ $(document).ready(function () {
     $('#linkHome').click(showHomeView);
     $('#linkLogin').click(showLoginView);
     $('#linkRegister').click(showRegisterView);
+    $('#linkVacantions').click(showVacation);
 });
 
 function showHideMenuLinks() {
@@ -42,4 +43,9 @@ function showRegisterView(event) {
     event.preventDefault();
     $('#formRegister').trigger('reset');
     showView('viewRegister');
+}
+
+function showVacation(event) {
+    event.preventDefault();
+    showView('vacationsScreen');
 }
