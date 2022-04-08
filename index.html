@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Human Resources Management System</title>
+    <script src="scripts/jquery-3.1.1.min.js"></script>
+    <script src="scripts/index.js"></script>
+    <script src="scripts/navigations.js"></script>
+    <script src="scripts/users.js"></script>
+    <script src="scripts/employees.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles/index.css" />
+</head>
+
+<body onload="startApp()">
+    <header id="menu">
+        <a href="#" id="linkHome">Начало</a>
+        <a href="#" id="linkLogin">Вход</a>
+        <a href="#" id="linkRegister">Регистрация</a>
+        <a href="#" id="linkListEmployees">Служители</a>
+        <a href="#" id="linkLogout">Изход</a>
+        <span id="loggedInUser"></span>
+    </header>
+    <main>
+        <section id="loadingBox">Зареждане...</section>
+        <section id="infoBox">Информация</section>
+        <section id="errorBox">Грешка</section>
+
+        <section id="viewHome">
+            <h1>Система за управление на човешките ресурси</h1>
+            <p>
+                Уеб базирано приложение за управление, подбор и оценка на персонала.
+            </p>
+        </section>
+
+        <section id="viewLogin">
+            <h2>Вход</h2>
+            <form id="formLogin">
+                <div>Потребител:</div>
+                <div><input type="text" name="username" required /></div>
+                <div>Парола:</div>
+                <div><input type="password" name="passwd" required></div>
+                <div><input type="button" id="buttonLoginUser" value="Вход"></div>
+            </form>
+        </section>
+
+        <section id="viewRegister">
+            <h2>Регистрация</h2>
+            <form id="formRegister">
+                <div>Потребител:</div>
+                <div><input type="text" name="username" required /></div>
+                <div>Парола:</div>
+                <div><input type="password" name="passwd" required></div>
+                <div><input type="button" id="buttonRegisterUser" value="Регистрация" /></div>
+            </form>
+        </section>
+
+        <section id="viewEmployees">
+            <div>
+                <button id="linkCreateEmployee">
+                    Добавяне на нов служител
+                </button>
+            </div>
+            <hr>
+            <h2>Служители</h2>
+
+            <div id="Employees">
+                <table>
+                    <tr>
+                        <th>Име</th>
+                        <th>Дни отпуск</th>
+                        <th>Опции</th>
+                    </tr>
+                </table>
+            </div>
+        </section>
+
+        <section id="viewCreateEmployee">
+            <h1>Регистрация на нов служител</h1>
+            <form id="formCreateEmployee">
+                <div>Име:</div>
+                <div>
+                    <input type="text" name="title" required />
+                </div>
+                <div>
+                    <input type="button" id="buttonCreateEmployee" value="Запиши" />
+                </div>
+            </form>
+        </section>
+
+        <section id="viewEditEmployee">
+            <h1>Промяна:</h1>
+            <form id="formEditEmployee">
+                <div><input type="hidden" name="id" required /></div>
+                <div>Име:</div>
+                <div><input type="text" name="title" required /></div>
+                <div><input type="button" id="buttonEditEmployee" value="Промени" /></div>
+            </form>
+        </section>
+
+    </main>
+    <footer>Използвани технологи: HTML, CSS, jQuery, Kinvey</footer>
+</body>
+
+</html>
