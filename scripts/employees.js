@@ -21,7 +21,7 @@ function listEmployees(event) {
 
     $.ajax({
         method: "GET",
-        url: kinveyBaseUrl + "appdata/" + kinveyAppKey + "/Employees",
+        url: kinveyBaseUrl + "appdata/" + kinveyAppKey + "/employees",
         headers: getKinveyUserAuthHeaders(),
         success: loadEmployeesSuccess,
         error: handleAjaxError
@@ -35,7 +35,7 @@ function listEmployees(event) {
             let EmployeesTable =
                 $('<table>')
                 .append($('<tr>')
-                    .append('<th>Title</th><th>Author</th>', '<th>Description</th><th>Actions</th>'));
+                    .append('<th>Име</th><th>Дни отпуск</th>', '<th>Опции</th>'));
 
             for (let Employee of Employees) {
                 appendEmployeeRow(Employee, EmployeesTable);
@@ -61,8 +61,7 @@ function listEmployees(event) {
                 .append($('<tr>')
                     .append(
                         $('<td>').text(Employee.title),
-                        $('<td>').text(Employee.author),
-                        $('<td>').text(Employee.description),
+                        $('<td>').text(Employee.daysOff),
                         $('<td>').append(links)));
         }
     }
@@ -71,13 +70,12 @@ function listEmployees(event) {
 function createEmployee() {
     let EmployeeData = {
         title: $('#formCreateEmployee input[name=title]').val(),
-        author: $('#formCreateEmployee input[name=author]').val(),
-        description: $('#formCreateEmployee textarea[name=descr]').val()
+        daysOff: 25
     };
 
     $.ajax({
         method: "POST",
-        url: kinveyBaseUrl + "appdata/" + kinveyAppKey + "/Employees",
+        url: kinveyBaseUrl + "appdata/" + kinveyAppKey + "/employees",
         headers: getKinveyUserAuthHeaders(),
         data: EmployeeData,
         success: createEmployeeSuccess,
@@ -93,7 +91,7 @@ function createEmployee() {
 function loadEmployeeForEdit(Employee) {
     $.ajax({
         method: "GET",
-        url: kinveyBaseUrl + "appdata/" + kinveyAppKey + "/Employees/" + Employee._id,
+        url: kinveyBaseUrl + "appdata/" + kinveyAppKey + "/employees/" + Employee._id,
         headers: getKinveyUserAuthHeaders(),
         success: loadEmployeeForEditSuccess,
         error: handleAjaxError
@@ -102,8 +100,7 @@ function loadEmployeeForEdit(Employee) {
     function loadEmployeeForEditSuccess(Employee) {
         $('#formEditEmployee input[name=id]').val(Employee._id);
         $('#formEditEmployee input[name=title]').val(Employee.title);
-        $('#formEditEmployee input[name=author]').val(Employee.author);
-        $('#formEditEmployee textarea[name=descr]').val(Employee.description);
+        $('#formEditEmployee input[name=daysOff]').val(Employee.daysOff);
 
         showView('viewEditEmployee');
     }
@@ -112,13 +109,12 @@ function loadEmployeeForEdit(Employee) {
 function editEmployee() {
     let EmployeeData = {
         title: $('#formEditEmployee input[name=title]').val(),
-        author: $('#formEditEmployee input[name=author]').val(),
-        description: $('#formEditEmployee textarea[name=descr]').val()
+        daysOff: $('#formEditEmployee input[name=daysOff]').val()
     };
 
     $.ajax({
         method: "PUT",
-        url: kinveyBaseUrl + "appdata/" + kinveyAppKey + "/Employees/" + $('#formEditEmployee input[name=id]').val(),
+        url: kinveyBaseUrl + "appdata/" + kinveyAppKey + "/employees/" + $('#formEditEmployee input[name=id]').val(),
         headers: getKinveyUserAuthHeaders(),
         data: EmployeeData,
         success: editEmployeeSuccess,
@@ -134,7 +130,7 @@ function editEmployee() {
 function deleteEmployee(Employee) {
     $.ajax({
         method: "DELETE",
-        url: kinveyBaseUrl + "appdata/" + kinveyAppKey + "/Employees/" + Employee._id,
+        url: kinveyBaseUrl + "appdata/" + kinveyAppKey + "/employees/" + Employee._id,
         headers: getKinveyUserAuthHeaders(),
         success: deleteEmployeeSuccess,
         error: handleAjaxError
