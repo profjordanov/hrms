@@ -3,12 +3,21 @@ $(document).ready(function () {
     $('#buttonCreateEmployee').click(createEmployee);
     $('#buttonEditEmployee').click(editEmployee);
     $('#linkCreateEmployee').click(showCreateEmployeeView);
+    $('#linkListDocuments').click(listDocuments);
+    $('#buttonAddDoc').click(displayUploadDocument)
+    $('#formDocument').submit(uploadDocument);
 });
 
 function showCreateEmployeeView(event) {
     event.preventDefault();
     $('#formCreateEmployee').trigger('reset');
     showView('viewCreateEmployee');
+}
+
+function displayUploadDocument(event) {
+    event.preventDefault();
+    $('#formDocument').trigger('reset');
+    showView('addEmployeeDocument');
 }
 
 function listEmployees(event) {
@@ -65,6 +74,53 @@ function listEmployees(event) {
                         $('<td>').append(links)));
         }
     }
+}
+
+function listDocuments(event) {
+    if (event != undefined) {
+        event.preventDefault();
+    }
+
+    showView('viewDocuments');
+
+    $.ajax({
+        method: "GET",
+        url: kinveyBaseUrl + "blob/" + kinveyAppKey,
+        headers: getKinveyUserAuthHeaders(),
+        success: loadDocsSuccess,
+        error: handleAjaxError
+    });
+
+    function loadDocsSuccess(documents) {
+        showInfo('Documents loaded.');
+        for(let document of documents){
+            $('#documentsResults').append($('<div>').text(document._filename));
+        }
+    }
+}
+
+function uploadDocument(event) {
+    event.preventDefault();
+
+    let formData = new FormData(this);
+    let fileInput = $('#file')[0];
+    let file = fileInput.files[0];
+    formData.append("File", file);
+  
+    $.ajax({
+      method: "POST",
+      url: kinveyBaseUrl + "blob/" + kinveyAppKey,
+      headers: getKinveyUserAuthHeaders(),
+      data: formData,
+      success: function(data) {
+          alert(data._filename);
+          listDocuments();
+      },
+      error: handleAjaxError,
+      cache: false,
+      contentType: false,
+      processData: false
+    });
 }
 
 function createEmployee() {

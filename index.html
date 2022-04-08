@@ -18,6 +18,7 @@
         <a href="#" id="linkLogin">Вход</a>
         <a href="#" id="linkRegister">Регистрация</a>
         <a href="#" id="linkListEmployees">Служители</a>
+        <a href="#" id="linkListDocuments">Документи</a>
         <a href="#" id="linkLogout">Изход</a>
         <span id="loggedInUser"></span>
     </header>
@@ -97,6 +98,28 @@
                 <div>Дни отпуск:</div>
                 <div><input type="number" name="daysOff" required /></div>
                 <div><input type="button" id="buttonEditEmployee" value="Промени" /></div>
+            </form>
+        </section>
+
+        <section id="viewDocuments">
+            <button id="buttonAddDoc">Добави</button>
+            <hr>
+            <h2>Документи на служители:</h2>
+            <div id="documentsResults">
+
+            </div>
+        </section>
+
+        <section id="addEmployeeDocument">
+            <h1>Добавяне на документ:</h1>
+            <form id="formDocument" method="post" enctype="multipart/form-data">
+                <div class="col-lg-3">
+                    <div class="form-group">
+                        <label for="file">Документ на служител:</label>
+                        <input type="file" class="form-control" id="file" />
+                    </div>
+                    <button id="buttonAddDoc">Качи</button>
+                </div>
             </form>
         </section>
 
