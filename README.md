@@ -1,7 +1,6 @@
-Human Resources Management System (HRMS)
+# Human Resources Management System (HRMS)
 
-Application Introduction
-
+## Application Introduction
 
 Human Resources Management System (HRMS) will be responsible for entities:
 •	Employees
