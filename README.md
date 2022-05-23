@@ -3,11 +3,17 @@
 ## Application Introduction
 
 Human Resources Management System (HRMS) will be responsible for entities:
+
 •	Employees
+
 •	Salaries
+
 •	Vacations
+
 •	Payments
+
 •	Bonuses
+
 •	Promotions
 
 System Requirements
